@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../global.css" />
+    <link rel="stylesheet" href="cadastro.css" />
+    <script src="cadastro.js" defer></script>
+    <title>Cadastro</title>
+  </head>
+  <body>
+    <header class="box-header">
+      <ul>
+        <li><a href="../../index.html">Início</a></li>
+      </ul>
+    </header>
+    <h1 class="titulo">Página de cadastro de pets</h1>
+
+    <form class="form">
+      <div class="form-div">
+        <img id="img" src="" alt="" />
+        <input
+          name="imagem"
+          id="imagem"
+          type="file"
+          accept=".png,.jpg, .jpeg"
+        />
+      </div>
+
+      <div class="form-div">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" />
+      </div>
+
+      <div class="form-div">
+        <label for="sexo">Sexo</label>
+        <input type="text" name="sexo" id="sexo" />
+      </div>
+
+      <div class="form-div">
+        <label for="cor">Cor</label>
+        <input type="text" name="cor" id="cor" />
+      </div>
+
+      <div class="form-div">
+        <label for="raca">Raça</label>
+        <input type="text" name="raca" id="raca" />
+      </div>
+
+      <div class="button-cadastro">
+        <button type="button" class="cadastro">Cadastrar</button>
+      </div>
+    </form>
+  </body>
+</html>
