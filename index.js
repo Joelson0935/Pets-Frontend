@@ -6,7 +6,9 @@ const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 5
-// FUNÇÕES //
+
+//  FUNÇÕES //
+
 function buscarTodosOsPets() {
 
 
@@ -39,21 +41,21 @@ function buscarTodosOsPets() {
 }
 
 function carregarPaginacao() {
-    fetch("http://localhost:8080/pet/buscar-lista-completa").then(response => response.json())
+    fetch("http://localhost:8080/pet/buscar-total-pets").then(response => response.json())
         .then(responseData => {
             while (divPagina.firstChild) {
                 divPagina.removeChild(divPagina.firstChild)
             }
-
+            
             const primeiro = document.createElement("button")
             primeiro.innerText = 'Inicio'
             primeiro.addEventListener("click", buscarTodosOsPets)
             div.appendChild(primeiro)
             divPagina.appendChild(div)
 
-            let botoes = (responseData.length / tamanho)
-
-            if (botoes >= 1 && responseData.length > tamanho) {
+            let botoes = (responseData / tamanho)
+            
+            if (botoes >= 1 && responseData > tamanho) {
                 for (let i = 0; i < Math.trunc(botoes); i++) {
                     const botao = document.createElement("button");
                     botao.innerText = 'Página ' + (i + 1)
@@ -71,7 +73,7 @@ function carregarPaginacao() {
                                 for (let i = 0; i < data.content.length; i++) {
                                     const div = document.createElement("div");
                                     const a = document.createElement("a");
-                                    a.href = "./paginas/visualizar/visualizar.html"
+                                    a.href = "./paginas/visualizar/visualizar.html?id=" + data.content[i].id
                                     const img = document.createElement("img");
                                     const p = document.createElement("p");
 
@@ -118,7 +120,7 @@ function buscarPetPorNome() {
     document.querySelector("#nome").value = ''
 }
 
-// CHAMADA DAS FUNÇÕES //
+//  CHAMADA DAS FUNÇÕES //
 
 window.onload = buscarTodosOsPets()
 busca.addEventListener("click", buscarPetPorNome);

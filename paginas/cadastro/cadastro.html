@@ -16,35 +16,43 @@
     </header>
     <h1 class="titulo">Página de cadastro de pets</h1>
 
-    <form class="form">
-      <div class="form-div">
-        <img id="img" src="" alt=""  />
+    <form class="form" id="form">
+      <div class="form-div" id="div-imagem">
+        <img id="img" src="" alt="" />
         <input
           name="imagem"
           id="imagem"
           type="file"
           accept=".png,.jpg, .jpeg"
         />
+        <small style="display: none" class="msg-erro">imagem obrigatória</small>
       </div>
 
       <div class="form-div">
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" />
+        <input type="text" name="nome" id="nome" maxlength="15" />
       </div>
 
-      <div class="form-div">
+      <div class="form-div" id="div-sexo">
         <label for="sexo">Sexo</label>
-        <input type="text" name="sexo" id="sexo" />
+        <select name="sexo" id="sexo">
+          <option value="">SELECIONE</option>
+          <option value="MASCULINO">MASCULINO</option>
+          <option value="FEMININO">FEMININO</option>
+        </select>
+        <small id="select" style="display: none" class="msg-erro"
+          >Selecione o Gênero</small
+        >
       </div>
 
       <div class="form-div">
         <label for="cor">Cor</label>
-        <input type="text" name="cor" id="cor" />
+        <input type="text" name="cor" id="cor" maxlength="15" />
       </div>
 
       <div class="form-div">
         <label for="raca">Raça</label>
-        <input type="text" name="raca" id="raca" />
+        <input type="text" name="raca" id="raca" maxlength="15" />
       </div>
 
       <div class="button-cadastro">

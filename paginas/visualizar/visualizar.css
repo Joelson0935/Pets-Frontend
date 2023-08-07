@@ -46,10 +46,11 @@
 
 @media (max-width: 640px) {
   .perfil {
-    width: 90%;
+    width: 95%;
   }
 
   .perfil img {
+    width: 50%;
     height: 200px;
   }
 
@@ -64,6 +65,6 @@
   }
 
   .perfil div div span {
-    font-size: 13px;
+    font-size: 12px;
   }
 }

@@ -53,6 +53,18 @@
   color: white;
 }
 
+.form-div select {
+  width: 60%;
+  height: 35px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: rgb(190, 132, 245);
+  color: white;
+}
+
 .button-cadastro {
   width: 30%;
   height: 35px;
@@ -77,6 +89,12 @@
   background-color: green;
   color: white;
   box-shadow: 0 0 5px 5px rgba(0, 128, 0, 0.61);
+}
+
+.msg-erro {
+  width: 100%;
+  color: red;
+  text-align: center;
 }
 
 @media (max-width: 640px) {
