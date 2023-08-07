@@ -3,11 +3,13 @@
 const busca = document.getElementById("buscar");
 const main = document.getElementById("list");
 const divPagina = document.querySelector(".pagina");
-
+const div = document.getElementById("div-pagina")
+let pageNumber = 0
+const tamanho = 5
 // FUNÇÕES //
 function buscarTodosOsPets() {
-    let pageNumber = 0
-    const tamanho = 5
+
+
     const url = 'http://localhost:8080/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
 
     fetch(url).then(response => response.json())
@@ -20,11 +22,11 @@ function buscarTodosOsPets() {
             for (let i = 0; i < data.content.length; i++) {
                 const div = document.createElement("div");
                 const a = document.createElement("a");
-                a.href = "./paginas/visualizar/visualizar.html"
+                a.href = "./paginas/visualizar/visualizar.html?id=" + data.content[i].id;
                 const img = document.createElement("img");
                 const p = document.createElement("p");
 
-                img.src = './img/pitoco.jpg';
+                img.src = data.content[i].foto;
                 p.innerText = data.content[i].nome
 
                 a.appendChild(img)
@@ -32,7 +34,13 @@ function buscarTodosOsPets() {
                 div.appendChild(p)
                 main.appendChild(div)
             }
+        })
+        .catch(err => console.error(err));
+}
 
+function carregarPaginacao() {
+    fetch("http://localhost:8080/pet/buscar-lista-completa").then(response => response.json())
+        .then(responseData => {
             while (divPagina.firstChild) {
                 divPagina.removeChild(divPagina.firstChild)
             }
@@ -40,43 +48,46 @@ function buscarTodosOsPets() {
             const primeiro = document.createElement("button")
             primeiro.innerText = 'Inicio'
             primeiro.addEventListener("click", buscarTodosOsPets)
-            divPagina.appendChild(primeiro)
+            div.appendChild(primeiro)
+            divPagina.appendChild(div)
 
-            let botoes = data.content.length / tamanho
+            let botoes = (responseData.length / tamanho)
 
-            for (let i = 0; i < botoes; i++) {
-                const botao = document.createElement("button");
-                botao.innerText = 'Página ' + (i + 1)
-                divPagina.appendChild(botao)
-                botao.onclick = () => {
-                    let number = (i + 1)
-                    fetch('http://localhost:8080/pet/buscar-lista-paginada?page=' + number + '&size=5&sort=id')
-                        .then(response => response.json())
-                        .then(data => {
-                            while (main.firstChild) {
-                                main.removeChild(main.firstChild);
-                            }
+            if (botoes >= 1 && responseData.length > tamanho) {
+                for (let i = 0; i < Math.trunc(botoes); i++) {
+                    const botao = document.createElement("button");
+                    botao.innerText = 'Página ' + (i + 1)
+                    div.appendChild(botao)
+                    divPagina.appendChild(div)
+                    botao.onclick = () => {
+                        let number = (i + 1)
+                        fetch('http://localhost:8080/pet/buscar-lista-paginada?page=' + number + '&size=5&sort=id')
+                            .then(response => response.json())
+                            .then(data => {
+                                while (main.firstChild) {
+                                    main.removeChild(main.firstChild);
+                                }
 
-                            for (let i = 0; i < data.content.length; i++) {
-                                const div = document.createElement("div");
-                                const a = document.createElement("a");
-                                a.href = "./paginas/visualizar/visualizar.html"
-                                const img = document.createElement("img");
-                                const p = document.createElement("p");
+                                for (let i = 0; i < data.content.length; i++) {
+                                    const div = document.createElement("div");
+                                    const a = document.createElement("a");
+                                    a.href = "./paginas/visualizar/visualizar.html"
+                                    const img = document.createElement("img");
+                                    const p = document.createElement("p");
 
-                                img.src = './img/pitoco.jpg';
-                                p.innerText = data.content[i].nome
+                                    img.src = data.content[i].foto;
+                                    p.innerText = data.content[i].nome
 
-                                a.appendChild(img)
-                                div.appendChild(a)
-                                div.appendChild(p)
-                                main.appendChild(div)
-                            }
-                        })
+                                    a.appendChild(img)
+                                    div.appendChild(a)
+                                    div.appendChild(p)
+                                    main.appendChild(div)
+                                }
+                            }).catch(err => console.log(err))
+                    }
                 }
             }
         })
-        .catch(err => console.error(err));
 }
 
 function buscarPetPorNome() {
@@ -84,25 +95,26 @@ function buscarPetPorNome() {
     fetch('http://localhost:8080/pet/buscar-objeto-por-nome?nome=' + nome)
         .then(response => response.json())
         .then(data => {
-            const div = document.createElement("div");
-            const a = document.createElement("a");
-            a.href = "./paginas/visualizar/visualizar.html"
-            const img = document.createElement("img");
-            const p = document.createElement("p");
 
             while (main.firstChild) {
                 main.removeChild(main.firstChild);
             }
 
-            img.src = './img/pitoco.jpg';
-            p.innerText = data.nome;
-            a.appendChild(img)
-            div.appendChild(a)
-            div.appendChild(p)
-            main.appendChild(div)
+            data.forEach(element => {
+                const div = document.createElement("div");
+                const a = document.createElement("a");
+                a.href = "./paginas/visualizar/visualizar.html?id=" + element.id;
+                const img = document.createElement("img");
+                const p = document.createElement("p");
 
-        })
-        .catch(error => console.error(error));
+                img.src = `./img/${element.foto}`;
+                p.innerText = element.nome;
+                a.appendChild(img)
+                div.appendChild(a)
+                div.appendChild(p)
+                main.appendChild(div)
+            });
+        }).catch(error => console.error(error));
     document.querySelector("#nome").value = ''
 }
 
@@ -110,3 +122,4 @@ function buscarPetPorNome() {
 
 window.onload = buscarTodosOsPets()
 busca.addEventListener("click", buscarPetPorNome);
+window.onload = carregarPaginacao()
