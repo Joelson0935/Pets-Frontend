@@ -6,7 +6,12 @@
     <link rel="stylesheet" href="../../global.css" />
     <link rel="stylesheet" href="cadastro.css" />
     <script src="cadastro.js" defer></script>
-    <title>Cadastro</title>
+    <link
+      rel="shortcut icon"
+      href="../../img/logo/pata-verde.png"
+      type="image/x-icon"
+    />
+    <title>Cadastrar Meu Pet</title>
   </head>
   <body>
     <header class="box-header">
@@ -28,14 +33,15 @@
         <small style="display: none" class="msg-erro">imagem obrigatória</small>
       </div>
 
-      <div class="form-div">
+      <div class="form-div" id="div-nome">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" maxlength="15" />
+        <small id="nome-text-error" style="display: none" class="msg-erro">nome obrigatório</small>
       </div>
 
       <div class="form-div" id="div-sexo">
         <label for="sexo">Sexo</label>
-        <select name="sexo" id="sexo">
+        <select name="sexo" id="sexo" required>
           <option value="">SELECIONE</option>
           <option value="MASCULINO">MASCULINO</option>
           <option value="FEMININO">FEMININO</option>
@@ -45,19 +51,25 @@
         >
       </div>
 
-      <div class="form-div">
+      <div class="form-div" id="div-cor">
         <label for="cor">Cor</label>
         <input type="text" name="cor" id="cor" maxlength="15" />
+        <small id="cor-text-error" style="display: none" class="msg-erro">cor obrigatória</small>
       </div>
 
-      <div class="form-div">
+      <div class="form-div" id="div-raca">
         <label for="raca">Raça</label>
         <input type="text" name="raca" id="raca" maxlength="15" />
+        <small id="raca-text-error" style="display: none" class="msg-erro">raça obrigatória</small>
       </div>
 
       <div class="button-cadastro">
         <button type="button" class="cadastro">Cadastrar</button>
       </div>
     </form>
+
+    <div class="msg-sucesso" id="sucesso">
+      <p>Cadastro realizado com sucesso!</p>
+    </div>
   </body>
 </html>

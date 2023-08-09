@@ -27,14 +27,65 @@ function cadastrar() {
     const race = document.querySelector("#raca").value;
 
     // ---------------------------------------------------- //
+    //                    VERIFICAÇÕES                      //
+    // ---------------------------------------------------- //
+
+    if (inputImage.value === '') {
+        document.getElementById('div-imagem').style.border = "1px solid red"
+        small.style.display = "block"
+        small.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        return
+    } else {
+        document.getElementById('div-imagem').style.border = "none"
+        small.style.display = "none"
+    }
+
+    if (name === '') {
+        document.getElementById("div-nome").style.border = '1px solid red'
+        const erroNome = document.getElementById('nome-text-error').style.display = "block"
+        erroNome.scrollIntoView({ behavior: "smooth", block: 'center' })
+        return
+    } else {
+        document.getElementById("div-nome").style.border = 'none'
+        document.getElementById('nome-text-error').style.display = "none"
+    }
+
+    if (gender === '') {
+        divSexo.style.border = "1px solid red"
+        const select = document.getElementById('select').style.display = "block"
+        select.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        return
+    } else {
+        divSexo.style.border = "none"
+        document.getElementById('select').style.display = "none"
+    }
+
+    if (color === '') {
+        document.getElementById("div-cor").style.border = '1px solid red'
+        const erroCor = document.getElementById('cor-text-error').style.display = "block"
+        erroCor.scrollIntoView({ behavior: "smooth", block: 'center' })
+        return
+    } else {
+        document.getElementById("div-cor").style.border = 'none'
+        document.getElementById('cor-text-error').style.display = "none"
+    }
+
+    if (race === '') {
+        document.getElementById("div-raca").style.border = '1px solid red'
+        const erroRaca = document.getElementById('raca-text-error').style.display = "block"
+        erroRaca.scrollIntoView({ behavior: "smooth", block: 'center' })
+        return
+    } else {
+        document.getElementById("div-raca").style.border = 'none'
+        document.getElementById('raca-text-error').style.display = "none"
+    }
+
+    // ---------------------------------------------------- //
+    //            FUNÇÃO DE ENVIO DE IMAGEM                 //
+    // ---------------------------------------------------- //
 
     const data = new FormData()
     data.append("image", photo.files[0])
-
-    if (inputImage.value == '') {
-        document.getElementById('div-imagem').style.border = "5px solid red"
-        small.style.display = "block"
-    }
 
     fetch('http://localhost:8080/pet/guardar-imagem', {
         method: "POST",
@@ -44,11 +95,8 @@ function cadastrar() {
     })
 
     // ---------------------------------------------------- //
-
-    if (gender === undefined | null | '') {
-        divSexo.style.border = "5px solid red"
-        document.getElementById('select').style.display = "block"
-    }
+    //                 FUNÇÃO DE CADASTRO                   //
+    // ---------------------------------------------------- //
 
     fetch(url, {
         method: 'POST',
@@ -64,6 +112,9 @@ function cadastrar() {
         })
     }).then(response => response.json())
         .then(data => {
+            document.getElementById("sucesso").style.display = "block"
+            const message = document.querySelector("#sucesso p")
+            message.scrollIntoView({ behavior: 'smooth', block: 'center' })
             console.log('Resposta do servidor:', data);
         }).catch(error => {
             console.error('Erro na requisição:', error);

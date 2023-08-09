@@ -11,7 +11,7 @@
 .perfil img {
   width: 60%;
   height: 400px;
-  border-radius: 5px;
+  border-radius: 8px 0px 0px 8px;
 }
 
 .perfil div {
@@ -26,22 +26,30 @@
   justify-content: left;
   align-items: center;
   gap: 10px;
-  padding-left: 10px;
-  border-bottom: 1px solid green;
-  border-right: 1px solid green;
+  padding-left: 20px;
+  border-bottom: 1px solid blueviolet;
+  border-right: 1px solid blueviolet;
+  background-color: blueviolet;
 }
 
 .perfil div div:first-child {
-  border-top: 1px solid green;
+  border-top: 1px solid blueviolet;
+  border-radius: 0px 8px 0px 0px;
+}
+.perfil div div:last-child {
+  border-radius: 0px 0px 8px 0px;
 }
 
 .perfil div div label {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
+  color: white;
 }
 
 .perfil div div span {
   font-size: 20px;
+  text-align: center;
+  color: white;
 }
 
 @media (max-width: 640px) {
