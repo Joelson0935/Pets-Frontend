@@ -11,12 +11,12 @@
       href="../../img/logo/pata-verde.png"
       type="image/x-icon"
     />
-    <title>Cadastrar Meu Pet</title>
+    <title>My Little Pet - cadastrar meu pet</title>
   </head>
   <body>
     <header class="box-header">
       <ul>
-        <li><a href="../../index.html">Início</a></li>
+        <li><a id="inicio" href="../../index.html">Início</a></li>
       </ul>
     </header>
     <h1 class="titulo">Página de cadastro de pets</h1>
@@ -36,7 +36,9 @@
       <div class="form-div" id="div-nome">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" maxlength="15" />
-        <small id="nome-text-error" style="display: none" class="msg-erro">nome obrigatório</small>
+        <small id="nome-text-error" style="display: none" class="msg-erro"
+          >nome obrigatório</small
+        >
       </div>
 
       <div class="form-div" id="div-sexo">
@@ -54,13 +56,17 @@
       <div class="form-div" id="div-cor">
         <label for="cor">Cor</label>
         <input type="text" name="cor" id="cor" maxlength="15" />
-        <small id="cor-text-error" style="display: none" class="msg-erro">cor obrigatória</small>
+        <small id="cor-text-error" style="display: none" class="msg-erro"
+          >cor obrigatória</small
+        >
       </div>
 
       <div class="form-div" id="div-raca">
         <label for="raca">Raça</label>
         <input type="text" name="raca" id="raca" maxlength="15" />
-        <small id="raca-text-error" style="display: none" class="msg-erro">raça obrigatória</small>
+        <small id="raca-text-error" style="display: none" class="msg-erro"
+          >raça obrigatória</small
+        >
       </div>
 
       <div class="button-cadastro">
@@ -69,7 +75,21 @@
     </form>
 
     <div class="msg-sucesso" id="sucesso">
-      <p>Cadastro realizado com sucesso!</p>
+      <p id="text-success">Cadastro realizado com sucesso!</p>
     </div>
+
+    <footer class="rodape">
+      <address>
+        <h1>contatos do desenvolvedor</h1>
+        <p>Desenvolvedor: Joelson Cerqueira</p>
+        <p>E-mail: joelsonluiz2010@gmail.com</p>
+        <a
+          href="https://www.linkedin.com/in/joelson-l-c-cerqueira-906a32195"
+          target="_blank"
+          >LinkedIn : joelson-l-c-cerqueira
+        </a>
+        <p>WhatsApp : (22) 99864-3385</p>
+      </address>
+    </footer>
   </body>
 </html>

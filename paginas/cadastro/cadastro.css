@@ -26,7 +26,8 @@
 .form-div:first-child input {
   background-color: transparent;
   width: 40%;
-  margin: auto;
+  margin-left: 13%;
+  font-size: 15px;
 }
 
 .form-div img {
@@ -39,6 +40,7 @@
 .form-div label {
   text-transform: uppercase;
   font-weight: bolder;
+  color: rgb(0, 0, 177);
 }
 
 .form-div input {
@@ -50,7 +52,6 @@
   border: none;
   outline: none;
   background-color: rgb(190, 132, 245);
-  color: white;
 }
 
 .form-div select {
@@ -62,7 +63,6 @@
   border: none;
   outline: none;
   background-color: rgb(190, 132, 245);
-  color: white;
 }
 
 .button-cadastro {
@@ -81,8 +81,9 @@
   width: 100%;
   border-radius: 10px;
   cursor: pointer;
+  color: rgb(0, 0, 177);
+  font-size: 18px;
   text-transform: uppercase;
-  transition: 0.5s ease-in-out;
 }
 
 .button-cadastro button:hover {
@@ -113,17 +114,12 @@
   width: 100%;
   height: 100%;
   font-size: 15px;
-  color: white;
   text-transform: uppercase;
   text-align: center;
   line-height: 35px;
 }
 
 @media (max-width: 640px) {
-  .titulo {
-    font-size: 18px;
-  }
-
   .form-div:first-child {
     width: 60%;
     height: 300px;
@@ -145,5 +141,13 @@
 
   .form-div input {
     font-size: 12px;
+  }
+
+  .button-cadastro button {
+    font-size: 13px;
+  }
+
+  .form-div select {
+    font-size: 13px;
   }
 }

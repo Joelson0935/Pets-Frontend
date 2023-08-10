@@ -34,7 +34,7 @@ function cadastrar() {
         document.getElementById('div-imagem').style.border = "1px solid red"
         small.style.display = "block"
         small.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        return
+        return false
     } else {
         document.getElementById('div-imagem').style.border = "none"
         small.style.display = "none"
@@ -44,7 +44,7 @@ function cadastrar() {
         document.getElementById("div-nome").style.border = '1px solid red'
         const erroNome = document.getElementById('nome-text-error').style.display = "block"
         erroNome.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return
+        return false
     } else {
         document.getElementById("div-nome").style.border = 'none'
         document.getElementById('nome-text-error').style.display = "none"
@@ -54,7 +54,7 @@ function cadastrar() {
         divSexo.style.border = "1px solid red"
         const select = document.getElementById('select').style.display = "block"
         select.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        return
+        return false
     } else {
         divSexo.style.border = "none"
         document.getElementById('select').style.display = "none"
@@ -64,7 +64,7 @@ function cadastrar() {
         document.getElementById("div-cor").style.border = '1px solid red'
         const erroCor = document.getElementById('cor-text-error').style.display = "block"
         erroCor.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return
+        return false
     } else {
         document.getElementById("div-cor").style.border = 'none'
         document.getElementById('cor-text-error').style.display = "none"
@@ -74,7 +74,7 @@ function cadastrar() {
         document.getElementById("div-raca").style.border = '1px solid red'
         const erroRaca = document.getElementById('raca-text-error').style.display = "block"
         erroRaca.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return
+        return false
     } else {
         document.getElementById("div-raca").style.border = 'none'
         document.getElementById('raca-text-error').style.display = "none"
@@ -110,15 +110,9 @@ function cadastrar() {
             cor: color.toLowerCase(),
             raca: race.toLowerCase()
         })
-    }).then(response => response.json())
-        .then(data => {
-            document.getElementById("sucesso").style.display = "block"
-            const message = document.querySelector("#sucesso p")
-            message.scrollIntoView({ behavior: 'smooth', block: 'center' })
-            console.log('Resposta do servidor:', data);
-        }).catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+    }).catch(error => {
+        console.error('Erro na requisição:', error);
+    });
 }
 
 botao.addEventListener('click', cadastrar)

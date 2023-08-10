@@ -3,13 +3,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(0, 0, 177);
+  color: white;
 }
 
 .titulo {
   text-align: center;
   margin: 10px auto 20px;
   text-transform: uppercase;
+  color: rgb(0, 0, 177);
 }
 
 .box-header {
@@ -24,7 +25,7 @@
 
 .box-header ul {
   display: flex;
-  gap: 15px;
+  gap: 25px;
 }
 
 .box-header ul li {
@@ -35,19 +36,48 @@
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
-  color: white;
+  text-transform: uppercase;
 }
 
 .box-header ul li a:hover {
+  text-decoration: underline;
   color: rgba(206, 191, 191, 0.836);
 }
 
+.rodape {
+  width: 100%;
+  height: 150px;
+  background-color: blueviolet;
+}
+
+.rodape address {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
 @media (max-width: 640px) {
+  .titulo {
+    font-size: 18px;
+  }
+
   .box-header {
     height: 100px;
   }
 
   .box-header ul li a {
     font-size: 18px;
+  }
+
+  .rodape address {
+    font-size: 15px;
+  }
+
+  .rodape address h1 {
+    font-size: 20px;
   }
 }

@@ -13,7 +13,6 @@
 .search h3 {
   text-transform: uppercase;
   margin-bottom: 20px;
-  color: white;
 }
 
 .search input {
@@ -34,9 +33,10 @@
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
+  color: rgb(0, 0, 177);
 }
 
-.search button:hover {
+.botao:hover {
   background-color: green;
   color: white;
 }
@@ -78,7 +78,6 @@
   background-color: blueviolet;
   border-radius: 10px;
   margin-top: 8px;
-  color: white;
 }
 
 .pagina {
@@ -108,7 +107,6 @@
   text-transform: uppercase;
   cursor: pointer;
   background-color: green;
-  color: white;
   margin-left: 5px;
 }
 
@@ -141,14 +139,13 @@
     height: 250px;
   }
 
-.pagina {
-  width: 80%;
-  height: 60px;
-}
+  .pagina {
+    width: 80%;
+    height: 60px;
+  }
 
   .pagina div {
     width: 2000px;
     height: 30px;
   }
-
 }

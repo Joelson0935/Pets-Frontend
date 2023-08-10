@@ -3,10 +3,9 @@ const main = document.getElementById("list");
 const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
-const tamanho = 5
+const tamanho = 10
 
-function buscarTodosOsPets() {
-
+function buscaPaginadaDosPets() {
 
     const url = 'http://localhost:8080/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
 
@@ -45,7 +44,7 @@ function criarBotoesDePaginacao() {
 
             const primeiro = document.createElement("button")
             primeiro.innerText = 'Inicio'
-            primeiro.addEventListener("click", buscarTodosOsPets)
+            primeiro.addEventListener("click", buscaPaginadaDosPets)
             div.appendChild(primeiro)
             divPagina.appendChild(div)
 
@@ -59,7 +58,7 @@ function criarBotoesDePaginacao() {
                     divPagina.appendChild(div)
                     botao.onclick = () => {
                         let number = (i + 1)
-                        fetch('http://localhost:8080/pet/buscar-lista-paginada?page=' + number + '&size=5&sort=id')
+                        fetch('http://localhost:8080/pet/buscar-lista-paginada?page=' + number + '&size=' + tamanho + '&sort=id')
                             .then(response => response.json())
                             .then(data => {
                                 while (main.firstChild) {
@@ -118,6 +117,6 @@ function buscarPetPorNome() {
     }
 }
 
-window.onload = buscarTodosOsPets()
+window.onload = buscaPaginadaDosPets()
 busca.addEventListener("click", buscarPetPorNome);
 window.onload = criarBotoesDePaginacao()
