@@ -3,7 +3,7 @@ const main = document.getElementById("list");
 const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
-const tamanho = 10
+const tamanho = 3
 
 function buscaPaginadaDosPets() {
 
@@ -19,11 +19,11 @@ function buscaPaginadaDosPets() {
             for (let i = 0; i < data.content.length; i++) {
                 const div = document.createElement("div");
                 const a = document.createElement("a");
-                a.href = "./paginas/visualizar/visualizar.html?id=" + data.content[i].id;
+                a.href = "./paginas/visualizar/visualizar.html?id="+data.content[i].id;
                 const img = document.createElement("img");
                 const p = document.createElement("p");
 
-                img.src = data.content[i].foto;
+                img.src = 'http://localhost:8080/' + data.content[i].foto;
                 p.innerText = data.content[i].nome
 
                 a.appendChild(img)
@@ -72,7 +72,7 @@ function criarBotoesDePaginacao() {
                                     const img = document.createElement("img");
                                     const p = document.createElement("p");
 
-                                    img.src = data.content[i].foto;
+                                    img.src = 'http://localhost:8080/' + data.content[i].foto;
                                     p.innerText = data.content[i].nome
 
                                     a.appendChild(img)
@@ -105,7 +105,7 @@ function buscarPetPorNome() {
                     const img = document.createElement("img");
                     const p = document.createElement("p");
 
-                    img.src = `./img/${element.foto}`;
+                    img.src = 'http://localhost:8080/' + element.foto;;
                     p.innerText = element.nome;
                     a.appendChild(img)
                     div.appendChild(a)

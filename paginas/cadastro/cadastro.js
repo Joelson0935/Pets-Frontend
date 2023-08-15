@@ -3,6 +3,7 @@ const botao = document.querySelector('.cadastro')
 const img = document.getElementById("img")
 const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
+let msgSucesso = document.getElementById("sucesso")
 
 if (img.getAttribute("src") === "") {
     img.style.display = "none"
@@ -34,7 +35,7 @@ function cadastrar() {
         document.getElementById('div-imagem').style.border = "1px solid red"
         small.style.display = "block"
         small.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        return false
+        return
     } else {
         document.getElementById('div-imagem').style.border = "none"
         small.style.display = "none"
@@ -44,7 +45,7 @@ function cadastrar() {
         document.getElementById("div-nome").style.border = '1px solid red'
         const erroNome = document.getElementById('nome-text-error').style.display = "block"
         erroNome.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return false
+        return
     } else {
         document.getElementById("div-nome").style.border = 'none'
         document.getElementById('nome-text-error').style.display = "none"
@@ -54,7 +55,7 @@ function cadastrar() {
         divSexo.style.border = "1px solid red"
         const select = document.getElementById('select').style.display = "block"
         select.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        return false
+        return
     } else {
         divSexo.style.border = "none"
         document.getElementById('select').style.display = "none"
@@ -64,7 +65,7 @@ function cadastrar() {
         document.getElementById("div-cor").style.border = '1px solid red'
         const erroCor = document.getElementById('cor-text-error').style.display = "block"
         erroCor.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return false
+        return
     } else {
         document.getElementById("div-cor").style.border = 'none'
         document.getElementById('cor-text-error').style.display = "none"
@@ -74,7 +75,7 @@ function cadastrar() {
         document.getElementById("div-raca").style.border = '1px solid red'
         const erroRaca = document.getElementById('raca-text-error').style.display = "block"
         erroRaca.scrollIntoView({ behavior: "smooth", block: 'center' })
-        return false
+        return
     } else {
         document.getElementById("div-raca").style.border = 'none'
         document.getElementById('raca-text-error').style.display = "none"
@@ -84,15 +85,18 @@ function cadastrar() {
     //            FUNÇÃO DE ENVIO DE IMAGEM                 //
     // ---------------------------------------------------- //
 
+
     const data = new FormData()
     data.append("image", photo.files[0])
 
     fetch('http://localhost:8080/pet/guardar-imagem', {
         method: "POST",
         body: data
-    }).catch(error => {
-        console.error('Erro na requisição:', error);
-    })
+    }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => {
+            //    console.error('Erro na requisição:', error);
+        })
 
     // ---------------------------------------------------- //
     //                 FUNÇÃO DE CADASTRO                   //
@@ -104,16 +108,24 @@ function cadastrar() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            foto: `../../img/${photo.files[0].name}`,
+            foto: photo.files[0].name,
             nome: name.toLowerCase(),
             sexo: gender,
             cor: color.toLowerCase(),
             raca: race.toLowerCase()
         })
-    }).catch(error => {
-        console.error('Erro na requisição:', error);
-    });
+    }).then(response => response.json())
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        })
+
+    msgSucesso.style.display = "block"
+    document.getElementById("text-success").scrollIntoView({ behavior: "smooth", block: 'center' })
+    setTimeout(() => {
+        msgSucesso.style.display = 'none'
+    }, 1000);
+    img.style.display = "none"
+    document.getElementById('form').reset()
 }
 
 botao.addEventListener('click', cadastrar)
-
