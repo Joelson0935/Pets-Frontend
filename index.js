@@ -4,10 +4,11 @@ const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 3
+const baseUrl = 'https://pets-backend-production.up.railway.app/pet'
 
 function buscaPaginadaDosPets() {
 
-    const url = 'http://localhost:8080/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
+    const url = baseUrl + '/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
 
     fetch(url).then(response => response.json())
         .then(data => {
@@ -19,11 +20,11 @@ function buscaPaginadaDosPets() {
             for (let i = 0; i < data.content.length; i++) {
                 const div = document.createElement("div");
                 const a = document.createElement("a");
-                a.href = "./paginas/visualizar/visualizar.html?id="+data.content[i].id;
+                a.href = "./paginas/visualizar/visualizar.html?id=" + data.content[i].id;
                 const img = document.createElement("img");
                 const p = document.createElement("p");
 
-                img.src = 'http://localhost:8080/' + data.content[i].foto;
+                img.src = `https://pets-backend-production.up.railway.app/${data.content[i].foto}`;
                 p.innerText = data.content[i].nome
 
                 a.appendChild(img)
@@ -36,7 +37,7 @@ function buscaPaginadaDosPets() {
 }
 
 function criarBotoesDePaginacao() {
-    fetch("http://localhost:8080/pet/buscar-total-pets").then(response => response.json())
+    fetch(`${baseUrl}/buscar-total-pets`).then(response => response.json())
         .then(responseData => {
             while (divPagina.firstChild) {
                 divPagina.removeChild(divPagina.firstChild)
@@ -58,7 +59,7 @@ function criarBotoesDePaginacao() {
                     divPagina.appendChild(div)
                     botao.onclick = () => {
                         let number = (i + 1)
-                        fetch('http://localhost:8080/pet/buscar-lista-paginada?page=' + number + '&size=' + tamanho + '&sort=id')
+                        fetch(baseUrl + '/buscar-lista-paginada?page=' + number + '&size=' + tamanho + '&sort=id')
                             .then(response => response.json())
                             .then(data => {
                                 while (main.firstChild) {
@@ -72,7 +73,7 @@ function criarBotoesDePaginacao() {
                                     const img = document.createElement("img");
                                     const p = document.createElement("p");
 
-                                    img.src = 'http://localhost:8080/' + data.content[i].foto;
+                                    img.src = `${baseUrl}/${data.content[i].foto}`;
                                     p.innerText = data.content[i].nome
 
                                     a.appendChild(img)
@@ -90,10 +91,10 @@ function criarBotoesDePaginacao() {
 function buscarPetPorNome() {
     const nome = document.querySelector("#nome").value;
     if (nome !== '') {
-        fetch('http://localhost:8080/pet/buscar-objeto-por-nome?nome=' + nome.toLowerCase())
+        fetch(`${baseUrl}/buscar-objeto-por-nome?nome=${nome.toLowerCase()}`)
             .then(response => response.json())
             .then(data => {
-
+                console.log(data);
                 while (main.firstChild) {
                     main.removeChild(main.firstChild);
                 }
@@ -105,7 +106,7 @@ function buscarPetPorNome() {
                     const img = document.createElement("img");
                     const p = document.createElement("p");
 
-                    img.src = 'http://localhost:8080/' + element.foto;;
+                    img.src = baseUrl + '/' + element.foto;
                     p.innerText = element.nome;
                     a.appendChild(img)
                     div.appendChild(a)

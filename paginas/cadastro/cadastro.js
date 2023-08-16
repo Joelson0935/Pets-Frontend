@@ -4,6 +4,7 @@ const img = document.getElementById("img")
 const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
 let msgSucesso = document.getElementById("sucesso")
+const baseUrl = 'https://pets-backend-production.up.railway.app/pet'
 
 if (img.getAttribute("src") === "") {
     img.style.display = "none"
@@ -20,7 +21,7 @@ inputImage.addEventListener('change', (event) => {
 })
 
 function cadastrar() {
-    const url = 'http://localhost:8080/pet/guardar-dados'
+    const url = baseUrl + '/guardar-dados'
     const photo = document.querySelector("#imagem");
     const name = document.querySelector("#nome").value;
     const gender = document.querySelector("#sexo").value;
@@ -89,7 +90,7 @@ function cadastrar() {
     const data = new FormData()
     data.append("image", photo.files[0])
 
-    fetch('http://localhost:8080/pet/guardar-imagem', {
+    fetch(baseUrl + '/guardar-imagem', {
         method: "POST",
         body: data
     }).then(response => response.json())
