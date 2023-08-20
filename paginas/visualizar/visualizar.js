@@ -3,15 +3,17 @@ const sexo = document.getElementById('sexo');
 const cor = document.getElementById('cor');
 const raca = document.getElementById('raca');
 const imagem = document.getElementById("imagem");
-const baseUrl = 'https://pets-backend-production.up.railway.app/pet'
+const baseUrl = 'http://localhost:8080'
+// http://localhost:8080
+// https://pets-backend-production.up.railway.app
 
 window.onload = () => {
     const parametros = new URLSearchParams(window.location.search)
     const id = parametros.get("id")
-    fetch(`${baseUrl}/buscar-pet-por-id/${id}`)
+    fetch(`${baseUrl}/pet/buscar-pet-por-id/${id}`)
         .then(response => response.json())
         .then(data => {
-            imagem.src = 'https://pets-backend-production.up.railway.app/' + data.foto;
+            imagem.src = data.foto;
             nome.innerText = data.nome
             sexo.innerText = data.sexo
             cor.innerText = data.cor

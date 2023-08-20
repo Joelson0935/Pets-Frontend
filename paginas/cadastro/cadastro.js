@@ -4,7 +4,10 @@ const img = document.getElementById("img")
 const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
 let msgSucesso = document.getElementById("sucesso")
-const baseUrl = 'https://pets-backend-production.up.railway.app/pet'
+const baseUrl = 'http://localhost:8080'
+
+// http://localhost:8080
+// https://pets-backend-production.up.railway.app
 
 if (img.getAttribute("src") === "") {
     img.style.display = "none"
@@ -20,9 +23,26 @@ inputImage.addEventListener('change', (event) => {
     }
 })
 
-function cadastrar() {
-    const url = baseUrl + '/guardar-dados'
+function guardarImagem() {
     const photo = document.querySelector("#imagem");
+    const data = new FormData()
+    data.append("image", photo.files[0])
+    const imgbb_key = 'dbd4ee2f4d216e3042247039cf0ab7b4'
+
+    //https://api.imgbb.com/1/upload
+    fetch('https://api.imgbb.com/1/upload?key=' + imgbb_key, {
+        method: "POST",
+        body: data,
+    }).then(response => response.json())
+        .then(response => {
+            cadastrar(response.data.url)
+        })
+        .catch(erro => console.error(erro))
+
+}
+
+function cadastrar(imageUrl) {
+    const urlPost = baseUrl + '/pet/guardar-objeto'
     const name = document.querySelector("#nome").value;
     const gender = document.querySelector("#sexo").value;
     const color = document.querySelector("#cor").value;
@@ -83,42 +103,22 @@ function cadastrar() {
     }
 
     // ---------------------------------------------------- //
-    //            FUNÇÃO DE ENVIO DE IMAGEM                 //
-    // ---------------------------------------------------- //
-
-
-    const data = new FormData()
-    data.append("image", photo.files[0])
-
-    fetch(baseUrl + '/guardar-imagem', {
-        method: "POST",
-        body: data
-    }).then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => {
-            //    console.error('Erro na requisição:', error);
-        })
-
-    // ---------------------------------------------------- //
     //                 FUNÇÃO DE CADASTRO                   //
     // ---------------------------------------------------- //
 
-    fetch(url, {
+    fetch(urlPost, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            foto: photo.files[0].name,
+            foto: imageUrl,
             nome: name.toLowerCase(),
             sexo: gender,
             cor: color.toLowerCase(),
             raca: race.toLowerCase()
-        })
-    }).then(response => response.json())
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        })
+        }),
+    }).catch(error => {
+        console.error('Erro na requisição:', error);
+    })
 
     msgSucesso.style.display = "block"
     document.getElementById("text-success").scrollIntoView({ behavior: "smooth", block: 'center' })
@@ -129,4 +129,4 @@ function cadastrar() {
     document.getElementById('form').reset()
 }
 
-botao.addEventListener('click', cadastrar)
+botao.addEventListener('click', guardarImagem)
