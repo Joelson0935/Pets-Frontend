@@ -3,7 +3,7 @@ const sexo = document.getElementById('sexo');
 const cor = document.getElementById('cor');
 const raca = document.getElementById('raca');
 const imagem = document.getElementById("imagem");
-const baseUrl = 'http://localhost:8080'
+const baseUrl = 'https://pets-backend-production.up.railway.app'
 // http://localhost:8080
 // https://pets-backend-production.up.railway.app
 

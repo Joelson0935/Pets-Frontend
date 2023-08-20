@@ -4,7 +4,7 @@ const img = document.getElementById("img")
 const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
 let msgSucesso = document.getElementById("sucesso")
-const baseUrl = 'http://localhost:8080'
+const baseUrl = 'https://pets-backend-production.up.railway.app'
 
 // http://localhost:8080
 // https://pets-backend-production.up.railway.app

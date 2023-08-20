@@ -4,7 +4,7 @@ const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 10
-const baseUrl = 'http://localhost:8080'
+const baseUrl = 'https://pets-backend-production.up.railway.app'
 // http://localhost:8080
 // https://pets-backend-production.up.railway.app
 
