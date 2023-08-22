@@ -29,6 +29,16 @@ function guardarImagem() {
     data.append("image", photo.files[0])
     const imgbb_key = 'dbd4ee2f4d216e3042247039cf0ab7b4'
 
+    if (inputImage.value === '') {
+        document.getElementById('div-imagem').style.border = "1px solid red"
+        small.style.display = "block"
+        small.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        return
+    } else {
+        document.getElementById('div-imagem').style.border = "none"
+        small.style.display = "none"
+    }
+
     //https://api.imgbb.com/1/upload
     fetch('https://api.imgbb.com/1/upload?key=' + imgbb_key, {
         method: "POST",
@@ -52,20 +62,11 @@ function cadastrar(imageUrl) {
     //                    VERIFICAÇÕES                      //
     // ---------------------------------------------------- //
 
-    if (inputImage.value === '') {
-        document.getElementById('div-imagem').style.border = "1px solid red"
-        small.style.display = "block"
-        small.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        return
-    } else {
-        document.getElementById('div-imagem').style.border = "none"
-        small.style.display = "none"
-    }
-
     if (name === '') {
         document.getElementById("div-nome").style.border = '1px solid red'
-        const erroNome = document.getElementById('nome-text-error').style.display = "block"
-        erroNome.scrollIntoView({ behavior: "smooth", block: 'center' })
+        document.getElementById('nome-text-error').style.display = "block"
+        const inputName = document.getElementById("nome")
+        inputName.scrollIntoView({ behavior: "smooth", block: 'center' })
         return
     } else {
         document.getElementById("div-nome").style.border = 'none'
@@ -74,7 +75,8 @@ function cadastrar(imageUrl) {
 
     if (gender === '') {
         divSexo.style.border = "1px solid red"
-        const select = document.getElementById('select').style.display = "block"
+        document.getElementById('select').style.display = "block"
+        const select = document.getElementById("sexo")
         select.scrollIntoView({ behavior: 'smooth', block: 'center' })
         return
     } else {
@@ -84,8 +86,9 @@ function cadastrar(imageUrl) {
 
     if (color === '') {
         document.getElementById("div-cor").style.border = '1px solid red'
-        const erroCor = document.getElementById('cor-text-error').style.display = "block"
-        erroCor.scrollIntoView({ behavior: "smooth", block: 'center' })
+        document.getElementById('cor-text-error').style.display = "block"
+        const inputCor = document.getElementById("cor")
+        inputCor.scrollIntoView({ behavior: "smooth", block: 'center' })
         return
     } else {
         document.getElementById("div-cor").style.border = 'none'
@@ -94,8 +97,9 @@ function cadastrar(imageUrl) {
 
     if (race === '') {
         document.getElementById("div-raca").style.border = '1px solid red'
-        const erroRaca = document.getElementById('raca-text-error').style.display = "block"
-        erroRaca.scrollIntoView({ behavior: "smooth", block: 'center' })
+        document.getElementById('raca-text-error').style.display = "block"
+        const inputRaca = document.getElementById("raca")
+        inputRaca.scrollIntoView({ behavior: "smooth", block: 'center' })
         return
     } else {
         document.getElementById("div-raca").style.border = 'none'
