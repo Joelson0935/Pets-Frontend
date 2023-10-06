@@ -6,7 +6,7 @@ const imagem = document.getElementById("imagem");
 const testUrl = 'http://localhost:8080'
 const prodUrl = 'https://pets-backend-production.up.railway.app'
 
-const baseUrl = testUrl
+const baseUrl = prodUrl
 
 window.onload = () => {
     const parametros = new URLSearchParams(window.location.search)

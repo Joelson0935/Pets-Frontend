@@ -7,7 +7,7 @@ let msgSucesso = document.getElementById("sucesso")
 const testUrl = 'http://localhost:8080'
 const prodUrl = 'https://pets-backend-production.up.railway.app'
 
-const baseUrl = testUrl
+const baseUrl = prodUrl
 
 if (img.getAttribute("src") === "") {
     img.style.display = "none"

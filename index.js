@@ -7,7 +7,7 @@ const tamanho = 10
 const testUrl = 'http://localhost:8080'
 const prodUrl = 'https://pets-backend-production.up.railway.app'
 
-const baseUrl = testUrl
+const baseUrl = prodUrl
 
 function buscaPaginadaDosPets() {
     const url = baseUrl + '/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
