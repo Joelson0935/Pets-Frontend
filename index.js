@@ -4,9 +4,10 @@ const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 10
-const baseUrl = 'https://pets-backend-production.up.railway.app'
-// http://localhost:8080
-// https://pets-backend-production.up.railway.app
+const testUrl = 'http://localhost:8080'
+const prodUrl = 'https://pets-backend-production.up.railway.app'
+
+const baseUrl = testUrl
 
 function buscaPaginadaDosPets() {
     const url = baseUrl + '/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'

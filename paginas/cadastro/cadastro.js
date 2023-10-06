@@ -4,10 +4,10 @@ const img = document.getElementById("img")
 const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
 let msgSucesso = document.getElementById("sucesso")
-const baseUrl = 'https://pets-backend-production.up.railway.app'
+const testUrl = 'http://localhost:8080'
+const prodUrl = 'https://pets-backend-production.up.railway.app'
 
-// http://localhost:8080
-// https://pets-backend-production.up.railway.app
+const baseUrl = testUrl
 
 if (img.getAttribute("src") === "") {
     img.style.display = "none"

@@ -3,9 +3,10 @@ const sexo = document.getElementById('sexo');
 const cor = document.getElementById('cor');
 const raca = document.getElementById('raca');
 const imagem = document.getElementById("imagem");
-const baseUrl = 'https://pets-backend-production.up.railway.app'
-// http://localhost:8080
-// https://pets-backend-production.up.railway.app
+const testUrl = 'http://localhost:8080'
+const prodUrl = 'https://pets-backend-production.up.railway.app'
+
+const baseUrl = testUrl
 
 window.onload = () => {
     const parametros = new URLSearchParams(window.location.search)
@@ -15,7 +16,7 @@ window.onload = () => {
         .then(data => {
             imagem.src = data.foto;
             nome.innerText = data.nome
-            sexo.innerText = data.sexo
+            sexo.innerText = data.sexo.toLowerCase()
             cor.innerText = data.cor
             raca.innerText = data.raca
         }).catch(err => console.error(err))
