@@ -5,7 +5,7 @@ const divSexo = document.getElementById("div-sexo")
 let small = document.querySelector(".msg-erro")
 let msgSucesso = document.getElementById("sucesso")
 const testUrl = 'http://localhost:8080'
-const prodUrl = 'https://pets-backend-production.up.railway.app'
+const prodUrl = 'https://pet-application.onrender.com'
 
 const baseUrl = prodUrl
 

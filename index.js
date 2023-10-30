@@ -5,7 +5,7 @@ const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 10
 const testUrl = 'http://localhost:8080'
-const prodUrl = 'https://pets-backend-production.up.railway.app'
+const prodUrl = 'https://pet-application.onrender.com'
 
 const baseUrl = prodUrl
 
