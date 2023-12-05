@@ -6,7 +6,7 @@ const imagem = document.getElementById("imagem");
 const testUrl = 'http://localhost:8080'
 const prodUrl = 'https://pet-application.onrender.com'
 
-const baseUrl = prodUrl
+const baseUrl = testUrl
 
 window.onload = () => {
     const parametros = new URLSearchParams(window.location.search)

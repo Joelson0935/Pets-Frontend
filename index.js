@@ -1,13 +1,14 @@
-const busca = document.getElementById("buscar");
+// const busca = document.getElementById("buscar");
 const main = document.getElementById("list");
 const divPagina = document.querySelector(".pagina");
 const div = document.getElementById("div-pagina")
 let pageNumber = 0
 const tamanho = 10
+const inputNome = document.getElementById("nome");
 const testUrl = 'http://localhost:8080'
 const prodUrl = 'https://pet-application.onrender.com'
 
-const baseUrl = prodUrl
+const baseUrl = testUrl
 
 function buscaPaginadaDosPets() {
     const url = baseUrl + '/pet/buscar-lista-paginada?page=' + pageNumber + '&size=' + tamanho + '&sort=id'
@@ -122,5 +123,10 @@ function buscarPetPorNome() {
 }
 
 window.onload = buscaPaginadaDosPets()
-busca.addEventListener("click", buscarPetPorNome);
+// busca.addEventListener("click", buscarPetPorNome);
 window.onload = criarBotoesDePaginacao()
+inputNome.addEventListener("keypress", (event) => {
+    if (event.key == "Enter") {
+        buscarPetPorNome();
+    }
+});
